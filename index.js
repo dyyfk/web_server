@@ -35,6 +35,12 @@ app.use((req, res, next)=>{
 });
 
 
+app.get('/project',(req,res)=>{
+	res.render('project.hbs',{
+		pageTitle: 'Project',
+		url: 'https://github.com/dyyfk/web_server'
+	});
+});
 app.get('/',(req,res)=>{
 	res.render('home.hbs',{
 		pageTitle: 'home',
