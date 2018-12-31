@@ -4,6 +4,7 @@ const fs = require('fs');
 
 
 var app = express();
+var path = require('path'); //TODO: delete this var afterwards
 
 const port = process.env.PORT || 3000;
 
@@ -18,6 +19,8 @@ app.set('view engine','hbs');
 //});
 
 app.use(express.static(__dirname+'/public'));
+app.use(express.static(__dirname+'/public'));
+
 
 hbs.registerHelper('getCurrentYear', ()=>{
 	return new Date().getFullYear();
@@ -34,6 +37,9 @@ app.use((req, res, next)=>{
 	next();
 });
 
+app.get('/chessBoard',(req,res)=>{
+   res.sendFile('chessBoard.html', {root: path.join(__dirname, './public')}) //TODO: fix this now temporialy fixed
+});
 
 app.get('/project',(req,res)=>{
 	res.render('project.hbs',{
